@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Handling Form Submission</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script th:inline="javascript">
+/*<![CDATA[*/
+
+    var graphData = /*[[${greeting.dataPoints}]]*/ 'default';
+    console.log(graphData);
+
+/*]]>*/
+
+	function loadGraph() {
+		console.log('${greeting.dataPoints}');
+		var chart = new CanvasJS.Chart("chartContainer", {
+			animationEnabled : true,
+			theme : "light2",
+			title : {
+				text : "Voltage Supply in Germany"
+			},
+			axisX: {
+				title: "Locations"
+			},
+			axisY: {
+				title: "Voltage Distribution"
+			},			
+			data : [ {
+				type : "line",
+				yValueFormatString: "#,##0mn tonnes",
+				dataPoints : th:text="${greeting.dataPoints}"
+					
+			} ]
+		});
+		chart.render();
+			
+	}
+</script>
+</head>
+<body>
+	<h1>Result</h1>
+	<p th:text="'id: ' + ${greeting.id}" />
+	<p th:text="'Voltage: ' + ${greeting.voltage}" />
+	<p th:text="'Location ' + ${greeting.location}" />
+	<p id="graphData1" th:text="${greeting.dataPoints}"  />
+	<input type="text" id="graphData" value="${greeting.dataPoints"/>
+	<a href="/greeting">Submit another voltage</a>
+	<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<script>loadGraph();</script>
+	
+</body>
+</html>
