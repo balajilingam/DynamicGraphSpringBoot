@@ -18,4 +18,4 @@ This example is extended from Spring site as below.
   
   Error validation as of now is not handled.
   
-  PFB the sample screenshots
+Sample screenshots are attached in Screenshots folder.
