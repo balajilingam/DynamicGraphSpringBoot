@@ -2,8 +2,8 @@ package home;
 
 public class Greeting {
 
-    private float voltage;
-    private float current;
+    private int voltage;
+    private int current;
     private float resistance; 
     private Object dataPoints;
 
@@ -15,19 +15,19 @@ public class Greeting {
 		this.dataPoints = dataPoints;
 	}
 
-	public float getVoltage() {
+	public int getVoltage() {
 		return voltage;
 	}
 
-	public void setVoltage(float voltage) {
+	public void setVoltage(int voltage) {
 		this.voltage = voltage;
 	}
 
-	public float getCurrent() {
+	public int getCurrent() {
 		return current;
 	}
 
-	public void setCurrent(float current) {
+	public void setCurrent(int current) {
 		this.current = current;
 	}
 

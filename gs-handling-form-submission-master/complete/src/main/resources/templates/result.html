@@ -4,14 +4,15 @@
 <title>Voltage Supply in Germany</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script th:inline="javascript">
 	/*<![CDATA[*/
-
 	var graphData = /*[[${greeting.dataPoints}]]*/'default';
 	console.log(graphData);
-
 	/*]]>*/
+	var loadData = JSON.parse(graphData);
+	console.log(loadData);
 	window.onload = function() {
 
 		var chart = new CanvasJS.Chart("chartContainer", {
@@ -21,10 +22,10 @@
 				text : "Voltage Supply in Germany"
 			},
 			axisX : {
-				title : "Locations"
+				title : "Voltage"
 			},
 			axisY : {
-				title : "Voltage Distribution"
+				title : "Current"
 			},
 			data : [ {
 				type : "line",
@@ -34,8 +35,31 @@
 		});
 		chart.render();
 
+		setTimeout(function() {
+			loadTable();
+		}, 0);
+
+	}
+
+	function loadTable() {
+		
+		var tbl = $("<tr/>").attr("id", "mytable");
+		
+		for (var i = 0; i < loadData.length; i++) {
+			
+			var tr = " <tr>";
+			var td1 = "<td>" + loadData[i]["y"] + "</td>";
+			var td2 = "<td>" + loadData[i]["label"] + "</td>";
+			var td3 = "<td>" + loadData[i]["y"]/loadData[i]["label"] + "</td></tr>";
+
+			
+	         $('table tr:last').after(tr+td1 + td2 + td3);
+
+		}
+
 	}
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <style>
 table, th, td {
 	border: 1px solid black;
@@ -49,33 +73,26 @@ th, td {
 </style>
 </head>
 <body>
-	
 
-<div class="container">
-<h1>Result</h1>
-	<p th:text="'Voltage: ' + ${greeting.voltage}" />
-	<p th:text="'Location ' + ${greeting.current}" />
-	<table style="width: 50%">
-		<tr>
-			<th>Volate</th>
-			<th>Current</th>
-			<th>Resistance</th>
-		</tr>
-		<tr>
-			<td><p th:text="${greeting.voltage}" /></td>
-			<td><p th:text="${greeting.current}" /></td>
-			<td><p th:text="${greeting.resistance}" /></td>
-		</tr>
-	</table>
-	<br/>
-	<br/>
-	
-<p>
-	<a href="/greeting">Submit Another Entry</a>
-</p>
 
-</div>
-	<!--  <div id="chartContainer" style="height: 300px; width: 100%;"></div> -->
+	<div class="container">
+		<h1>Result</h1>
+
+		<table style="width: 50%">
+		<th>Volate</th>	<th>Current</th><th>Resistance</th>
+		<div id="div1"></div>
+		</table>
+
+		
+
+		<br /> <br />
+
+		<p>
+			<a href="/greeting">Submit Another Entry</a>
+		</p>
+
+	</div>
+	<div id="chartContainer" style="height: 300px; width: 100%;"></div>
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 

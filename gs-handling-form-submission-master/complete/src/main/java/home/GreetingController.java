@@ -18,6 +18,14 @@ import com.google.gson.Gson;
 
 @Controller
 public class GreetingController {
+	
+	List<Map<Object, Object>> list = null;
+	GreetingController() {
+		
+		if (list == null) {
+			list = new ArrayList<Map<Object, Object>>();
+		}
+	}
 
 	@GetMapping("/greeting")
 	public String greetingForm(Model model) {
@@ -27,7 +35,7 @@ public class GreetingController {
 
 	private void fileProcessing(Greeting greeting) {
 		try {
-			File resource = new File("D:/Readings/Aadu/gs-handling-form-submission-master/data.dat");
+			File resource = new File("D:/v1/data.dat");
 			if (!resource.exists()) {
 				resource.createNewFile();
 			}
@@ -44,28 +52,32 @@ public class GreetingController {
 
 	@PostMapping("/greeting")
 	public String greetingSubmit(@ModelAttribute Greeting greeting) {
-		greeting.setResistance(greeting.getVoltage()/greeting.getCurrent());
+		float r ;
+		float v = (float)greeting.getVoltage();
+		float c = (float)greeting.getCurrent();
+		r=v/c;		
+		greeting.setResistance(r);
 		fileProcessing(greeting);
-		//chartProcessing(greeting);
+		chartProcessing(greeting);
 		return "result";
 	}
 
 	private void chartProcessing(Greeting greeting) {
 		Gson gsonObj = new Gson();
-		Map<Object,Object> map = null;
-		List<Map<Object,Object>> list = new ArrayList<Map<Object,Object>>();
+		Map<Object, Object> map = null;
+		
 		 
-		map = new HashMap<Object,Object>(); map.put("label", "Berlin"); map.put("y", 188); list.add(map);
+		/*map = new HashMap<Object,Object>(); map.put("label", "Berlin"); map.put("y", 188); list.add(map);
 		map = new HashMap<Object,Object>(); map.put("label", "Hamburg"); map.put("y", 213); list.add(map);
 		map = new HashMap<Object,Object>(); map.put("label", "Bavaria"); map.put("y", 213); list.add(map);
 		map = new HashMap<Object,Object>(); map.put("label", "North Rhine-Westphalia"); map.put("y", 219); list.add(map);
 		map = new HashMap<Object,Object>(); map.put("label", "Saxony"); map.put("y", 207); list.add(map);
 		map = new HashMap<Object,Object>(); map.put("label", "Bavaria"); map.put("y", 167); list.add(map);
-		map = new HashMap<Object,Object>(); map.put("label", "karlShue"); map.put("y", 136); list.add(map);
-		map = new HashMap<Object,Object>(); map.put("label", greeting.getVoltage()); map.put("y", greeting.getCurrent()); list.add(map);
+		map = new HashMap<Object,Object>(); map.put("label", "karlShue"); map.put("y", 136); list.add(map);*/
+		map = new HashMap<Object,Object>(); map.put("label", greeting.getVoltage()); map.put("y", greeting.getCurrent()); this.list.add(map);
 		 
 		//String dataPoints = gsonObj.toJson(list);
-		greeting.setDataPoints(gsonObj.toJson(list));
+		greeting.setDataPoints(gsonObj.toJson(this.list));
 		System.out.println(greeting.getDataPoints());
 	}
 
