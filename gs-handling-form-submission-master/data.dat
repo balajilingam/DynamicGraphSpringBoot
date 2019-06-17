@@ -1,2 +1,23 @@
 Greeting [id=0, voltage=120, location=bala]
 Greeting [id=0, voltage=100, location=bala]
+Greeting [id=0, voltage=250, location=Karlshue]
+Greeting [id=0, voltage=0, location=]
+Greeting [id=0, voltage=150, location=Chennai]
+Greeting [id=0, voltage=200, location=Velachery]
+home.Greeting@4d877a8b
+home.Greeting@5dcec4dd
+home.Greeting@5728a857
+home.Greeting@7a5fb2b2
+Greeting [voltage=10.0, current=5.0, resistance=2.0]
+Greeting [voltage=10.0, current=100.0, resistance=0.1]
+Greeting [voltage=20.0, current=200.0, resistance=0.1]
+Greeting [voltage=0.0, current=0.0, resistance=NaN]
+Greeting [voltage=10.0, current=10.0, resistance=1.0]
+Greeting [voltage=10.0, current=100.0, resistance=0.1]
+Greeting [voltage=0.0, current=0.0, resistance=NaN]
+Greeting [voltage=0.0, current=0.0, resistance=NaN]
+Greeting [voltage=0.0, current=0.0, resistance=NaN]
+Greeting [voltage=0.0, current=0.0, resistance=NaN]
+Greeting [voltage=0.0, current=0.0, resistance=NaN]
+Greeting [voltage=0.0, current=0.0, resistance=NaN]
+Greeting [voltage=0.0, current=0.0, resistance=NaN]

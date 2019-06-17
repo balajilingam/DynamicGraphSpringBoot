@@ -44,8 +44,9 @@ public class GreetingController {
 
 	@PostMapping("/greeting")
 	public String greetingSubmit(@ModelAttribute Greeting greeting) {
+		greeting.setResistance(greeting.getVoltage()/greeting.getCurrent());
 		fileProcessing(greeting);
-		chartProcessing(greeting);
+		//chartProcessing(greeting);
 		return "result";
 	}
 
@@ -61,7 +62,7 @@ public class GreetingController {
 		map = new HashMap<Object,Object>(); map.put("label", "Saxony"); map.put("y", 207); list.add(map);
 		map = new HashMap<Object,Object>(); map.put("label", "Bavaria"); map.put("y", 167); list.add(map);
 		map = new HashMap<Object,Object>(); map.put("label", "karlShue"); map.put("y", 136); list.add(map);
-		map = new HashMap<Object,Object>(); map.put("label", greeting.getLocation()); map.put("y", greeting.getVoltage()); list.add(map);
+		map = new HashMap<Object,Object>(); map.put("label", greeting.getVoltage()); map.put("y", greeting.getCurrent()); list.add(map);
 		 
 		//String dataPoints = gsonObj.toJson(list);
 		greeting.setDataPoints(gsonObj.toJson(list));

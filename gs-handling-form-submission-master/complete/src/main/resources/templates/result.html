@@ -3,30 +3,32 @@
 <head>
 <title>Voltage Supply in Germany</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script th:inline="javascript">
-/*<![CDATA[*/
+	/*<![CDATA[*/
 
-    var graphData = /*[[${greeting.dataPoints}]]*/ 'default';
-    console.log(graphData);
+	var graphData = /*[[${greeting.dataPoints}]]*/'default';
+	console.log(graphData);
 
-/*]]>*/
+	/*]]>*/
 	window.onload = function() {
-		
-	var chart = new CanvasJS.Chart("chartContainer", {
+
+		var chart = new CanvasJS.Chart("chartContainer", {
 			animationEnabled : true,
 			theme : "light2",
 			title : {
 				text : "Voltage Supply in Germany"
 			},
-			axisX: {
-				title: "Locations"
+			axisX : {
+				title : "Locations"
 			},
-			axisY: {
-				title: "Voltage Distribution"
-			},			
+			axisY : {
+				title : "Voltage Distribution"
+			},
 			data : [ {
 				type : "line",
-				yValueFormatString: "#,##0mn tonnes",
+				yValueFormatString : "#,##0mn tonnes",
 				dataPoints : JSON.parse(graphData)
 			} ]
 		});
@@ -34,17 +36,49 @@
 
 	}
 </script>
+<style>
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 5px;
+	text-align: left;
+}
+</style>
 </head>
 <body>
-	<h1>Result</h1>
-	<p th:text="'id: ' + ${greeting.id}" />
+	
+
+<div class="container">
+<h1>Result</h1>
 	<p th:text="'Voltage: ' + ${greeting.voltage}" />
-	<p th:text="'Location ' + ${greeting.location}" />
-	<a href="/greeting">Submit another voltage</a>
-	<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+	<p th:text="'Location ' + ${greeting.current}" />
+	<table style="width: 50%">
+		<tr>
+			<th>Volate</th>
+			<th>Current</th>
+			<th>Resistance</th>
+		</tr>
+		<tr>
+			<td><p th:text="${greeting.voltage}" /></td>
+			<td><p th:text="${greeting.current}" /></td>
+			<td><p th:text="${greeting.resistance}" /></td>
+		</tr>
+	</table>
+	<br/>
+	<br/>
+	
+<p>
+	<a href="/greeting">Submit Another Entry</a>
+</p>
+
+</div>
+	<!--  <div id="chartContainer" style="height: 300px; width: 100%;"></div> -->
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-	
-	
+
+
 </body>
 </html>
-s
+

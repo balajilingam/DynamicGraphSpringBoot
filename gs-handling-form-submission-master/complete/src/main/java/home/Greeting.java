@@ -2,9 +2,9 @@ package home;
 
 public class Greeting {
 
-    private long id;
-    private int voltage;
-    private String location;
+    private float voltage;
+    private float current;
+    private float resistance; 
     private Object dataPoints;
 
 	public Object getDataPoints() {
@@ -15,35 +15,37 @@ public class Greeting {
 		this.dataPoints = dataPoints;
 	}
 
-	public int getVoltage() {
+	public float getVoltage() {
 		return voltage;
 	}
 
-	public void setVoltage(int voltage) {
+	public void setVoltage(float voltage) {
 		this.voltage = voltage;
 	}
 
-	public String getLocation() {
-		return location;
+	public float getCurrent() {
+		return current;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setCurrent(float current) {
+		this.current = current;
 	}
 
+	public float getResistance() {
+		return resistance;
+	}
 
-	public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+	public void setResistance(float resistance) {
+		this.resistance = resistance;
+	}
 
 	@Override
 	public String toString() {
-		return "Greeting [id=" + id + ", voltage=" + voltage + ", location=" + location + "]";
+		return "Greeting [voltage=" + voltage + ", current=" + current + ", resistance=" + resistance + "]";
 	}
+
+	
+
 
 
 }
